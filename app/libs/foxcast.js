@@ -26,6 +26,7 @@
       // and action if required
 
       var uri = SERVER_URL + target;
+      console.log(uri);
       if (action) {
         uri += '/' + action + '/';
       }

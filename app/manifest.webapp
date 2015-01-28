@@ -34,9 +34,8 @@
   },
   "default_locale": "en-US",
   "icons": {
-    "84": "/style/images/icons/FoxCast@1.png",
-    "126": "/style/images/icons/FoxCast@1.5.png",
-    "189": "/style/images/icons/FoxCast@2.png"
+    "64": "/style/icons/64.png",
+    "128": "/style/icons/128.png"
   },
   "version": "1"
 }
