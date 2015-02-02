@@ -16,9 +16,12 @@ window.onload = function() {
   createButton.addEventListener(
     'click',
     function() {
+      //'https://www.youtube.com/watch?v=UMJpK8cBjkQ'
+      //'http://vimeo.com/62092214'
+      //'http://www.marca.com'
       FoxCast.create(
         {
-          url: 'https://www.youtube.com/watch?v=UMJpK8cBjkQ',
+          url: 'http://vimeo.com/62092214',
           dongle_id: dongle_id,
           action:  'open' // Could be 'open' or 'watch'
         }, function(e, result) {
@@ -102,9 +105,21 @@ window.onload = function() {
               return;
             }
             var url = urlObjects[urlObjects.length - 1].url
-            // TODO Add hosted app if it's youtube/vimeo
-            alert('Notificacion para abrir ' + url);
-            // window.open(url, '_blank');
+            
+            if(!document.hidden) {
+              FoxPlayer.newUrl(url);
+            } else {
+              var request = window.navigator.mozApps.getSelf();
+              request.onsuccess = function() {
+                if (request.result) {
+                  request.result.launch();
+                  setTimeout(function() {
+                    FoxPlayer.newUrl(url);
+                  });
+                }
+              };
+            }
+            
           }
         );
       },
