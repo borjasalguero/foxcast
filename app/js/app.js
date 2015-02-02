@@ -40,7 +40,7 @@ window.onload = function() {
     doqr(dongle._id);
 
     dongle_id = dongle._id;
-
+    document.getElementById('dongle-id').textContent = dongle_id;
     createButton.disabled = false; // TODO Remove.This will be
                                    // implemented in the ADDON
   }
@@ -95,6 +95,7 @@ window.onload = function() {
               console.log('ERROR WHILE REQUESTING ' + JSON.stringify(e));
               return;
             }
+
             // Retrieve URL
             var urlObjects = JSON.parse(result);
             if (!urlObjects || urlObjects.length === 0) {
@@ -102,7 +103,8 @@ window.onload = function() {
             }
             var url = urlObjects[urlObjects.length - 1].url
             // TODO Add hosted app if it's youtube/vimeo
-            window.open(url, '_blank');
+            alert('Notificacion para abrir ' + url);
+            // window.open(url, '_blank');
           }
         );
       },

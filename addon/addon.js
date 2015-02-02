@@ -303,6 +303,11 @@ var video = null;
 document.addEventListener("DOMContentLoaded", function(event) {
   // Get the player contaienr
   var playerContainer = document.querySelector('.player_container');
+
+  if (!playerContainer) {
+    playerContainer = document.querySelector('._mfw');
+  }
+
   if (!playerContainer) {
     return;
   }

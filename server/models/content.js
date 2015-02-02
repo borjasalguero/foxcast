@@ -8,7 +8,8 @@ var ContentSchema = new Schema({
   url: String,
   dongle_id: String,
   action:  { type: String, default: 'open' }, // Could be 'open' or 'watch'
-  executed: { type: Boolean, default: false }
+  executed: { type: Boolean, default: false },
+  created: { type: Date, default: Date.now() }
 });
 
 var ContentModel = mongoose.model('Content', ContentSchema);
@@ -21,10 +22,15 @@ var ContentManager = {
     var content = new ContentModel(req.body);
     content.save(function(e, contentCreated) {
       if (e) {
-        return res.send(500, err.message);
+        return res.send(500, e.message);
       }
-      dongleManger.notify(contentCreated.dongle_id);
-      res.status(200).jsonp(contentCreated);
+      dongleManger.notify(contentCreated.dongle_id, function(e) {
+        if (e) {
+          return res.send(500, e.message);
+        }
+        res.status(200).jsonp(contentCreated);
+      });
+
     });
   },
   // Given a version from the push notification, we get
