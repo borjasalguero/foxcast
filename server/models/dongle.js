@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 
 var DongleSchema = new Schema({
   endpoint: String,
-  pushversion : { type: Number, default: 1 }
+  pushversion : { type: Number, default: 1 },
+  created: { type: Date, default: Date.now() }
 });
 
 var DongleModel = mongoose.model('Dongle', DongleSchema);
@@ -22,25 +23,35 @@ var DongleManager = {
       res.status(200).jsonp(dongleCreated);
     });
   },
-  notify: function(id) {
+  notify: function(id, callback) {
     DongleModel.find(
       {
         _id: id
       },
       function(e, result) {
+
         if (e) {
           callback(e);
           return;
         }
         var dongle = result[0];
+
+        if (!dongle || !dongle.pushversion) {
+          callback({
+            message: 'Dongle ' + id + 'does not exists'
+          });
+          return;
+        }
         dongle.pushversion++;
         dongle.save(function(e, user) {
           if (e) {
-            return res.send(500, err.message);
+            callback(e);
+            return;
           }
           console.log('Send push to ' + dongle.endpoint);
           console.log('With version ' + dongle.pushversion);
           simplePush.notify(dongle.pushversion, dongle.endpoint);
+          callback();
         });
       }
     );
