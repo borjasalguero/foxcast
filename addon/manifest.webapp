@@ -4,12 +4,12 @@
   "type": "privileged",
   "customizations": [
     {
-      "filter": "http://vimeo.com",
+      "filter": "youtube",
       "css": ["style_addon.css"],
       "scripts": ["addon.js"]
     },
     {
-      "filter": "http://m.youtube.com",
+      "filter": "vimeo",
       "css": ["style_addon.css"],
       "scripts": ["addon.js"]
     }
