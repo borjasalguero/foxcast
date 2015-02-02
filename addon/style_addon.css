@@ -1,0 +1,63 @@
+body, html {
+  background: blue !important;
+}
+
+canvas {
+  display: block;
+}
+
+body {
+  position: relative !important;
+  float: left !important;
+}
+
+.fxos-launch-tv {
+  width: 50px !important;
+  height: 50px !important;
+  background-size: 100%;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  background: url(tv.png);
+  background-color: rgba(0,0,0,.3);
+  border-radius: 0 0 10px 10px;
+  z-index: 1000000;
+}
+
+.fxos-remove-dongle {
+  width: 50px !important;
+  height: 50px !important;
+  background-size: 100%;
+  position: absolute;
+  top: 0;
+  left: 70px;
+  background: url(remove_tv.png);
+  background-color: rgba(0,0,0,.3);
+  border-radius: 0 0 10px 10px;
+  z-index: 1000000;
+}
+
+
+.fxos-pairing-panel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100000000;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: white !important;
+}
+
+.fxos-pairing-panel button {
+  background: white;
+  width: 100%;
+  height: 3rem;
+}
+
+/*.fxos-pairing-panel video {
+  background: white;
+  width: 100%;
+  height: auto;
+}*/

@@ -1,0 +1,12 @@
+{
+  "name": "VIMEOADDON2",
+  "role": "addon",
+  "type": "privileged",
+  "customizations": [
+    {
+      "filter": "http://vimeo.com",
+      "css": ["style_addon.css"],
+      "scripts": ["addon.js"]
+    }
+  ]
+}

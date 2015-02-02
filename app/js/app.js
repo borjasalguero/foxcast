@@ -36,11 +36,9 @@ window.onload = function() {
    * Method for rendering the dongle info in QR format
    */
   function showQR(dongle) {
-    debug && console.log('QR ' + dongle._id);
-    // 'qrcode' is the ID of the HTML element where the
-    // QR Code is displayed
-    var qrcode = new QRCode('qrcode');
-    qrcode.makeCode(dongle._id);
+    console.log(dongle._id);
+    doqr(dongle._id);
+
     dongle_id = dongle._id;
 
     createButton.disabled = false; // TODO Remove.This will be
@@ -87,17 +85,22 @@ window.onload = function() {
     SimplePush.createChannel(
       'foxcast-notifications',
       function onNotification(version) {
+
         // If a notification arrives, we need to check all media
         // content to show based on dongle_id
         FoxCast.get(
           dongle_id,
           function(e, result) {
             if (e) {
-              console.log('ERROR WHILE REQUESTING ' + e);
+              console.log('ERROR WHILE REQUESTING ' + JSON.stringify(e));
               return;
             }
             // Retrieve URL
-            var url = JSON.parse(result)[0].url;
+            var urlObjects = JSON.parse(result);
+            if (!urlObjects || urlObjects.length === 0) {
+              return;
+            }
+            var url = urlObjects[urlObjects.length - 1].url
             // TODO Add hosted app if it's youtube/vimeo
             window.open(url, '_blank');
           }
