@@ -16,6 +16,9 @@
     },
     "systemXHR": {
       "description": "Allow FoxCast to make requests to external services as FoxCast server"
+    },
+    "browser": {
+      "description": "Allow FoxCast to embed the player of vimeo or youtube"
     }
   },
   "messages": [
