@@ -1,0 +1,37 @@
+{
+  "name": "FoxCastRemote",
+  "description": "FoxCast Remote",
+  "launch_path": "/index.html",
+  "type": "privileged",
+  "developer": {
+    "name": "The FoxCast Team",
+    "url": "https://github.com/borjasalguero/foxcast"
+  },
+  "permissions": {
+    "systemXHR": {
+      "description": "Allow FoxCast to make requests to external services as FoxCast server"
+    },
+    "browser": {
+      "description": "Allow FoxCast to embed the player of vimeo or youtube"
+    },
+    "video-capture": {
+      "description": "Share with Firefox Hello the video stream captured through the camera(s)"
+    }
+  },
+  "locales": {
+    "en-US": {
+      "name": "RemoteTV",
+      "description": "Dongle App"
+    },
+    "es": {
+      "name": "RemoteTV",
+      "description": "Dongle App"
+    }
+  },
+  "default_locale": "en-US",
+  "icons": {
+    "64": "/style/icons/64.png",
+    "128": "/style/icons/128.png"
+  },
+  "version": "1"
+}
