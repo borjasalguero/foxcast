@@ -74,8 +74,11 @@
           });
         },
         function(error) {
-          document.body.removeChild(pairingPanel);
           console.log('Error while showing own video stream through gUM ' + JSON.stringify(error));
+          if (!pairingPanel) {
+            return;
+          }
+          document.body.removeChild(pairingPanel);
         }
       );
     }); // End of the promise
