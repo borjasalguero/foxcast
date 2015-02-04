@@ -28,6 +28,15 @@
       "description": "Dongle App"
     }
   },
+  "activities": {
+   "share": {
+      "filters": {
+        "type": "url"
+      },
+      "disposition": "inline",
+      "returnValue": true
+    }
+  },
   "default_locale": "en-US",
   "icons": {
     "64": "/style/icons/64.png",
