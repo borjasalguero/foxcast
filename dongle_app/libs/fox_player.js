@@ -1,29 +1,57 @@
 var FoxPlayer = (function(){
+  var wrapper = null;
   var browser = null;
+  var exitButton = null;
+
+  function open(){
+    wrapper = document.getElementById('wrapper-browser');
+    wrapper.hidden = false;
+    exitButton = wrapper.querySelector('#exit-button');
+    exitButton.addEventListener('click', close);
+    createBrowserIframe();
+    show();
+  }
+
+  function show(){
+    setTimeout(function(){
+      wrapper.classList.remove('close');
+      wrapper.mozRequestFullScreen();
+    }, 100);
+  }
+
+  function close(){
+    wrapper.addEventListener("transitionend", hideAfterTransition);
+    function hideAfterTransition(){
+      wrapper.hidden = true;
+      wrapper.removeEventListener("transitionend", hideAfterTransition);
+    }
+    wrapper.removeChild(browser);
+    wrapper.classList.add('close');
+    wrapper.mozCancelFullScreen();
+    exitButton.removeEventListener('click', close);
+    wrapper = null;
+    browser = null;
+    exitButton = null;
+  }
 
   function createBrowserIframe(){
-    if(browser){
-      return false;
-    }
     browser = document.createElement('iframe');
     browser.id = 'browser';
     browser.setAttribute('mozbrowser', '');
     browser.setAttribute('remote', '');
     browser.setAttribute('frameborder', 0);
     browser.setAttribute('allowfullscreen', '');
-    document.body.appendChild(browser);
+    wrapper.appendChild(browser);
   }
 
   function changeSrc(url){
     var video = getVideoId(url);
 
     if(video.is === 'youtube'){
-      browser.src = 'https://www.youtube.com/embed/'+video.id+'?autoplay=1';
-      browser.mozRequestFullScreen();
+      browser.src = 'https://www.youtube.com/embed/'+video.id+'?autoplay=1&controls=0&disablekb=1&showinfo=0';
     }
     else if(video.is === 'vimeo' ){
-      browser.src = 'http://player.vimeo.com/video/'+video.id+'?autoplay=1';
-      browser.mozRequestFullScreen();
+      browser.src = 'http://player.vimeo.com/video/'+video.id+'?autoplay=1&badge=0&byline=0&title=0';
       browser.addNextPaintListener(function(){
         setTimeout(function(){
           clickBrowser();
@@ -59,7 +87,7 @@ var FoxPlayer = (function(){
   }
 
   function newUrl(url){
-    createBrowserIframe();
+    open(show);
     changeSrc(url);
   }
 
