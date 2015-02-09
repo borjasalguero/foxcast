@@ -25,6 +25,7 @@
      { "push": "/index.html" },
      { "notification": "/index.html" }
   ],
+  "orientation": "landscape",
   "locales": {
     "en-US": {
       "name": "FoxCast",

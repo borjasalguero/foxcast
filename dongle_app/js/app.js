@@ -43,7 +43,6 @@ window.onload = function() {
     doqr(dongle._id);
 
     dongle_id = dongle._id;
-    document.getElementById('dongle-id').textContent = dongle_id;
     createButton.disabled = false; // TODO Remove.This will be
                                    // implemented in the ADDON
   }

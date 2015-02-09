@@ -12,10 +12,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   </head>
   <body>
-    <h1>Dongle Manager</h1>
-    <button  id="create">Create example media</button>
-    <p id="dongle-id"></p>
-    <canvas id="qrcode"></canvas>
+    <h1 class="brand">Fox<span>Cast</span></h1>
+    <div id="tool-buttons">
+      <button id="create">Create</button>
+      <button id="delete">Delete</button>
+    </div>
+    <div id="qr-container">     
+      <canvas id="qrcode"></canvas>
+    </div>
+    <p class="balloon">
+      <span class="title">SCAN ME</span>
+      <span class="text">Scan this code for starting to share content between your phone and the TV.</span>
+      <span class="arrow"></span>
+    </p>
     <section id="wrapper-browser" class="close" hidden>
       <button id="exit-button"></button>
     </section>
