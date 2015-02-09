@@ -25,16 +25,17 @@
           audio: false
         },
         function(stream) {
-
+          document.body.classList.add('scanning');
           var pairingPanel = document.createElement('div');
+          pairingPanel.id = 'pairing-panel';
           document.body.appendChild(pairingPanel);
           // Create a CB from the library. Will be executed
           // once the QR will be resolved.
           qrcode.callback = function(text) {
             document.body.removeChild(pairingPanel);
+            document.body.classList.remove('scanning');
             resolve(text);
           }
-
 
           video = document.createElement('video');
           video.muted = true;
@@ -78,6 +79,7 @@
           if (!pairingPanel) {
             return;
           }
+          document.body.classList.remove('scanning');
           document.body.removeChild(pairingPanel);
         }
       );
