@@ -7,14 +7,19 @@
  */
 
 window.onload = function() {
-  navigator.mozSetMessageHandler('activity', function(activityRequest) {
-    var url = activityRequest.source.data.url;
-    if(!url || url.length === 0){
-      window.close();
-      return;
-    }
-    
-    DongleManager.get().then(function(dongle_id) {
+  DongleManager.get().then(function(dongle_id) {
+    var messagesDongle = document.getElementById('messages-dongle');
+    messagesDongle.textContent = 'TV Paired!';
+    messagesDongle.setAttribute('color', 'green');
+    messagesDongle.removeAttribute('loading');
+
+    navigator.mozSetMessageHandler('activity', function(activityRequest) {
+      document.body.classList.remove('scanning');
+      var url = activityRequest.source.data.url;
+      if(!url || url.length === 0){
+        window.close();
+        return;
+      }
       // Request to the server to create a new 'media' content
       // based on the URL
       FoxCast.create(
@@ -27,20 +32,29 @@ window.onload = function() {
             alert('ERROR WHILE CREATING MEDIA ' + JSON.stringify(e));
             return;
           }
-          alert('Content sent to FoxCast!');
           setTimeout(function(){
             window.close();
-          }, 2000);
+          }, 1500);
         }
       );
     });
   });
-
-  document.getElementById('delete-dongle').addEventListener(
+  document.getElementById('cancel-share').addEventListener(
+    'click',
+    function(){
+      window.close();
+    }
+  );
+  document.getElementById('delete-button').addEventListener(
     'click',
     function() {
       DongleManager.remove().then(function() {
-        alert('Dongle deleted');
+        var messagesDongle = document.getElementById('messages-dongle');
+        messagesDongle.textContent = 'TV Removed';
+        messagesDongle.setAttribute('color', 'red');
+        setTimeout(function(){
+          window.location.reload();
+        }, 1500)
       });
     }
   );
