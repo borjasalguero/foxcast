@@ -704,8 +704,8 @@ function genframe(instring)
 var wd, ht, qrc;
 function setupqr(){
 //    window.scrollTo(0,1)
-    wd = window.innerWidth-10;
-    ht = window.innerHeight-10;
+     wd = 300-10;
+     ht = 380-10;
     // mp = document.getElementById("mapcanv");
 
     // qrd = document.getElementById("qrdiv");
@@ -738,7 +738,7 @@ function doqr(text) {
     px=Math.round(px - 0.5);
     qrc.clearRect(0,0,wd,ht);
     qrc.fillStyle = '#fff';
-    qrc.fillRect(0,0,px*(width+8),px*(width+8));
+    //qrc.fillRect(0,0,px*(width+8),px*(width+8));
     qrc.fillStyle = '#000';
     for( i = 0; i < width; i++ )
         for( j = 0; j < width; j++ )
