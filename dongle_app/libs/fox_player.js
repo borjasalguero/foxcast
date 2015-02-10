@@ -20,19 +20,7 @@ var FoxPlayer = (function(){
   }
 
   function close(){
-    var elementWrapper = wrapper;
-    wrapper.addEventListener("transitionend", hideAfterTransition);
-    function hideAfterTransition(){
-      elementWrapper.hidden = true;
-      elementWrapper.removeEventListener("transitionend", hideAfterTransition);
-    }
-    wrapper.removeChild(browser);
-    wrapper.classList.add('close');
-    document.mozCancelFullScreen();
-    exitButton.removeEventListener('click', close);
-    wrapper = null;
-    browser = null;
-    exitButton = null;
+    window.close();
   }
 
   function createBrowserIframe(){

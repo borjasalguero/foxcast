@@ -195,7 +195,7 @@ button:active{
   color: #000;
 }
 
-#tool-buttons button#delete {
+#tool-buttons button#regenerate {
   background: url("img/remove.svg") no-repeat scroll center center / 2.2rem auto rgba(255, 255, 255, 0.85);
 }
 
