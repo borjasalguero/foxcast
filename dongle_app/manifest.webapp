@@ -28,11 +28,11 @@
   "orientation": "landscape",
   "locales": {
     "en-US": {
-      "name": "FoxCast",
+      "name": "FoxCastTV",
       "description": "Dongle App"
     },
     "es": {
-      "name": "FoxCast",
+      "name": "FoxCastTV",
       "description": "Dongle App"
     }
   },

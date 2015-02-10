@@ -136,15 +136,12 @@ button:active{
   z-index: 1;
   border-radius: 50%;
   opacity: 1;
+  background: url("img/close.svg") no-repeat scroll center center / 2rem auto rgba(255, 255, 255, 0.85);
   transition: opacity 0.5s 0.7s;
 }
 
 #wrapper-browser.close > button#exit-button {
   opacity: 0;
-}
-
-#wrapper-browser > button:before {
-  content: "X";
 }
 
 .balloon .title {
@@ -186,16 +183,46 @@ button:active{
 }
 
 #tool-buttons button {
-  width: auto;
+  width: 4rem;
   height: 4rem;
   line-height: 4rem;
   font-size: 2rem;
-  background: #00539F;
+  background: rgba(255, 255, 255, 0.85);
   float: right;
-  border-radius: 0.5rem;
+  border-radius: 50%;
   margin-right: 1rem;
   padding: 0 1rem;
-  color: #fff;
+  color: #000;
+}
+
+#tool-buttons button#delete {
+  background: url("img/remove.svg") no-repeat scroll center center / 2.2rem auto rgba(255, 255, 255, 0.85);
+}
+
+#tool-buttons button#create {
+  background: url("img/demo.svg") no-repeat scroll center center / 2.2rem auto rgba(255, 255, 255, 0.85);
+}
+
+#not-online {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #FFF;
+  font-size: 2.5rem;
+  z-index: 1000;
+  padding: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s;
+  transform: translateY(-100%);
+}
+
+body.no-connection #not-online {
+  transform: translateY(0%);
 }
 
 @media (min-width: 1000px) {

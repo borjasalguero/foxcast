@@ -20,14 +20,15 @@ var FoxPlayer = (function(){
   }
 
   function close(){
+    var elementWrapper = wrapper;
     wrapper.addEventListener("transitionend", hideAfterTransition);
     function hideAfterTransition(){
-      wrapper.hidden = true;
-      wrapper.removeEventListener("transitionend", hideAfterTransition);
+      elementWrapper.hidden = true;
+      elementWrapper.removeEventListener("transitionend", hideAfterTransition);
     }
     wrapper.removeChild(browser);
     wrapper.classList.add('close');
-    wrapper.mozCancelFullScreen();
+    document.mozCancelFullScreen();
     exitButton.removeEventListener('click', close);
     wrapper = null;
     browser = null;
@@ -93,6 +94,6 @@ var FoxPlayer = (function(){
 
   return {
     newUrl: newUrl,
-    togglePlay: clickBrowser
+    close: close
   }
 })();
