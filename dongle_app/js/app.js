@@ -193,4 +193,14 @@ window.onload = function() {
       FoxPlayer.close();
     }
   });
+
+  //regenerate the QR
+  var regenerateButton = document.getElementById('regenerate');
+  regenerateButton.addEventListener('click', function(){
+    asyncStorage.removeItem('dongle', function(){
+      SimplePush.reset();
+      boot();
+    });
+  })
+
 };
