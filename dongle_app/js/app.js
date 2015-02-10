@@ -75,6 +75,7 @@ window.onload = function() {
   /*
    * Start listening push events
    */
+  var isNotificationHandled = false;
   function registerPush(callback) {
     debug && console.log('registerPush');
 
@@ -87,7 +88,7 @@ window.onload = function() {
     SimplePush.createChannel(
       'foxcast-notifications',
       function onNotification(version) {
-
+        console.log('isNotificationHandled ' + isNotificationHandled);
         // If a notification arrives, we need to check all media
         // content to show based on dongle_id
         FoxCast.get(
@@ -104,7 +105,14 @@ window.onload = function() {
               return;
             }
             var url = urlObjects[urlObjects.length - 1].url
-            
+
+            if (isNotificationHandled) {
+              FoxPlayer.changeSrc(url);
+              return;
+            }
+
+            isNotificationHandled = true;
+
             if(!document.hidden) {
               FoxPlayer.newUrl(url);
             } else {
@@ -118,7 +126,7 @@ window.onload = function() {
                 }
               };
             }
-            
+
           }
         );
       },
@@ -186,7 +194,7 @@ window.onload = function() {
 
   window.addEventListener('online',  updateOnlineStatus);
   window.addEventListener('offline', updateOnlineStatus);
-  
+
   //For stopping the video if the app lose the focus
   document.addEventListener('mozvisibilitychange', function() {
     if(document.hidden){
