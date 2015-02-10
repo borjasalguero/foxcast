@@ -137,18 +137,60 @@ window.onload = function() {
     );
   }
 
-
-  // Retrieve dongle if exists. If not we will create it.
-  asyncStorage.getItem(
-    'dongle',
-    function onRetrieved(dongle) {
-      console.log('asyncStorage GET ' + dongle);
-      if (!dongle) {
-        registerPush(registerDongle);
-        return;
+  //Start the QR and register it (if doesn'r exist)
+  function boot(){
+    asyncStorage.getItem(
+      'dongle',
+      function onRetrieved(dongle) {
+        console.log('asyncStorage GET ' + dongle);
+        if (!dongle) {
+          registerPush(registerDongle);
+          return;
+        }
+        registerPush();
+        showQR(dongle);
       }
-      registerPush();
-      showQR(dongle);
+    );
+    window.removeEventListener('online',  boot);
+  }
+
+  if(navigator.onLine){
+    boot();
+  }else{
+    updateOnlineStatus();
+    window.addEventListener('online',  boot);
+  }
+
+  //For blocking or unblocking the app if the user doesn't have connection
+  function updateOnlineStatus() {
+    if(navigator.onLine){
+      document.body.classList.remove('no-connection');
+    }else{
+      document.body.classList.add('no-connection');
+      var userResponse = window.confirm('You don\'t have internet connection. Do you want turn it on now?');
+      if(userResponse) {
+        var activity = new window.MozActivity({
+        name: 'configure',
+          data: {
+            target: 'device',
+            section: 'root',
+            filterBy: 'connectivity'
+          }
+        });
+        activity.onerror = function() {
+          console.warn('Configure activity error:', activity.error.name);
+        };
+      }
     }
-  );
+  }
+
+  window.addEventListener('online',  updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+  
+  //For stopping the video if the app lose the focus
+  document.addEventListener('mozvisibilitychange', function() {
+    if(document.hidden){
+      FoxPlayer.close();
+    }
+  });
 };

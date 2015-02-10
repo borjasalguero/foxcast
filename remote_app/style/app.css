@@ -118,6 +118,10 @@ p#messages-dongle[loading] {
   background: url("img/remove.svg") no-repeat scroll center center / 2rem auto rgba(255, 255, 255, 0.85);
 }
 
+#cancel-share {
+  background: url("img/close.svg") no-repeat scroll center center / 2rem auto rgba(255, 255, 255, 0.85);
+}
+
 #messages {
   position: absolute;
   left: 0;
