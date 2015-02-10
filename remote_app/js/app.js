@@ -29,9 +29,20 @@ window.onload = function() {
           action:  'open'
         }, function(e, result) {
           if (e) {
-            alert('ERROR WHILE CREATING MEDIA ' + JSON.stringify(e));
+            messagesDongle.textContent = 'Error :(';
+            messagesDongle.setAttribute('color', 'red');
+            console.log('ERROR WHILE CREATING MEDIA ' + JSON.stringify(e));
+            setTimeout(function(){
+              window.close();
+            }, 1000)
             return;
           }
+
+          setTimeout(function(){
+            messagesDongle.textContent = 'Content sent!';
+            messagesDongle.setAttribute('color', 'dark-green');
+          }, 500);
+
           setTimeout(function(){
             window.close();
           }, 1500);
