@@ -57,7 +57,7 @@ var FoxPlayer = (function(){
     var match = url.match(regExp);
     if (match) {
       return { is: 'youtube', id: match[2]};
-    } 
+    }
 
     regExp = /(videos|video|channels|\.com)\/([\d]+)/;
     match = url.match(regExp);
@@ -82,6 +82,7 @@ var FoxPlayer = (function(){
 
   return {
     newUrl: newUrl,
-    close: close
+    close: close,
+    changeSrc: changeSrc
   }
 })();
