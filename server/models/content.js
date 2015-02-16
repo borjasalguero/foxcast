@@ -36,15 +36,20 @@ var ContentManager = {
   // Given a version from the push notification, we get
   // all content non-executed yet in the TV
   get: function(req, res) {
+    var query = {
+      dongle_id: req.params.id
+    };
     ContentModel.find(
-      {
-        dongle_id: req.params.id
-      },
+      query,
       function(e, items) {
         if (e) {
           return res.send(500, 'No media given dongle ID');
         }
+        // In order to keep the DB as small as we can, we will
+        // delete all the content once we send it to the dongle
+        ContentModel.remove(query).exec();
         res.status(200).jsonp(items);
+
       }
     );
   }
