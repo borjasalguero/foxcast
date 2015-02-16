@@ -39,8 +39,8 @@
   },
   "default_locale": "en-US",
   "icons": {
-    "64": "/style/icons/64.png",
-    "128": "/style/icons/128.png"
+    "128": "/style/icons/128.png",
+    "512": "/style/icons/512.png"
   },
   "version": "1"
 }
