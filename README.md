@@ -16,3 +16,7 @@ For pairing the TV and the remote app, just scan the QR code and share your cont
 
 Let's convert your Raspberry Pi with Firefox OS (or any other board as Panda) in a TV Dongle, or install it in your Panasonic TV or 'mirror device'.
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/borjasalguero/foxcast/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
