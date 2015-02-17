@@ -33,6 +33,7 @@
       "filters": {
         "type": "url"
       },
+      "href": "index.html",
       "disposition": "inline",
       "returnValue": true
     }
