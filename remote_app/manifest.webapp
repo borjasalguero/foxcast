@@ -15,7 +15,7 @@
       "description": "Allow FoxCast to embed the player of vimeo or youtube"
     },
     "video-capture": {
-      "description": "Share with Firefox Hello the video stream captured through the camera(s)"
+      "description": "Share with FoxCast the video stream captured through the camera(s)"
     }
   },
   "locales": {
